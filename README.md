@@ -16,10 +16,10 @@ aqui va la introducción del producto
   <table align= 'center'>
     <tr align= 'center'>
       <td align= 'center'>
-        <img src='https://github.com/account' style= 'width:200px height=200px'>
+        <img src='' style= 'width:200px height=200px'>
         <a href='' width=''>
         <a href='' width=''>
       </td>
     </tr>
   </table>
-<\div>
+</div>
