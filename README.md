@@ -26,7 +26,7 @@ aqui va la introducción del producto
         <a href='' width=''>
       </td>
       <td align= 'center'>
-        <img src='https://github.com/user-attachments/assets/fcd04ccf-aa8d-439b-85a5-b1a372205a13' style= 'width:200px height=200px'><br>Ludmila<br>
+        <img src='https://github.com/user-attachments/assets/d72bf324-b844-4938-ae94-b952657594df' style= 'width:200px height=200px'><br>Ludmila<br>
         <a href='' width=''>
         <a href='' width=''>
       </td>
