@@ -19,7 +19,7 @@ aqui va la introducción del producto
         <img src='https://github.com/account' style= 'width:200px height=200px'>
         <a href='' width=''>
         <a href='' width=''>
-      <\td>
+      </td>
     </tr>
-  <\table>
+  </table>
 <\div>
