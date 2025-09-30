@@ -16,7 +16,17 @@ aqui va la introducción del producto
   <table align= 'center'>
     <tr align= 'center'>
       <td align= 'center'>
-        <img src='https://github.com/user-attachments/assets/94ee6990-0d7d-4804-b28d-f2a0a49ab024' style= 'width:200px height=200px'>
+        <img src='https://github.com/user-attachments/assets/94ee6990-0d7d-4804-b28d-f2a0a49ab024' style= 'width:200px height=200px'><br>Marco<br>
+        <a href='' width=''>
+        <a href='' width=''>
+      </td>
+      <td align= 'center'>
+        <img src='https://github.com/user-attachments/assets/94ee6990-0d7d-4804-b28d-f2a0a49ab024' style= 'width:200px height=200px'><br>Marco<br>
+        <a href='' width=''>
+        <a href='' width=''>
+      </td>
+      <td align= 'center'>
+        <img src='https://github.com/user-attachments/assets/94ee6990-0d7d-4804-b28d-f2a0a49ab024' style= 'width:200px height=200px'><br>Marco<br>
         <a href='' width=''>
         <a href='' width=''>
       </td>
