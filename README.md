@@ -17,18 +17,18 @@ aqui va la introducción del producto
     <tr align= 'center'>
       <td align= 'center'>
         <img src='https://avatars.githubusercontent.com/u/106486985?v=4' width='200' height='200'><br><strong>Marco</strong><br>
-        <a href='https://www.linkedin.com/in/marco-antonio-caro-22459711b/'> <img src= 'assets\linkedin.png' style= 'width:'20px;'></a>
-        <a href='https://github.com/marco11235813'> <img src= 'assets\github.png' style= 'width:'20px;'></a>
+        <a href='https://www.linkedin.com/in/marco-antonio-caro-22459711b/'> <img src= 'assets\linkedin.png' style= 'width:20px;'></a>
+        <a href='https://github.com/marco11235813'> <img src= 'assets\github.png' style= 'width:20px;'></a>
       </td>
       <td align= 'center'>
         <img src='https://github.com/user-attachments/assets/d122a17c-ce28-43d4-9d4f-8f5a90cc51ce' width='200' height='200'><br><strong>Michelle</strong><br>
-        <a href='link_linkedin'> <img src= 'assets\linkedin.png' style= 'width:'20px;'></a>
-        <a href='link_github'> <img src= 'assets\github.png' style= 'width:'20px;'></a>
+        <a href='link_linkedin'> <img src= 'assets\linkedin.png' style= 'width:20px;'></a>
+        <a href='link_github'> <img src= 'assets\github.png' style= 'width:20px;'></a>
       </td>
       <td align= 'center'>
         <img src='https://github.com/user-attachments/assets/d72bf324-b844-4938-ae94-b952657594df' width='200' height='200'><br><strong>Ludmila</strong><br>
-        <a href='link_linkedin'> <img src= 'assets\linkedin.png' style= 'width:'20px;'></a>
-        <a href='link_github'> <img src= 'assets\github.png' style= 'width:'20px;'></a>
+        <a href='link_linkedin'> <img src= 'assets\linkedin.png' style= 'width:20px;'></a>
+        <a href='link_github'> <img src= 'assets\github.png' style= 'width:20px;'></a>
       </td>
     </tr>
   </table>
