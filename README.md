@@ -9,6 +9,30 @@
 
 aqui va la introducción del producto
 
+## Problematica de negocio
+
+Las fintech y bancos digitales deben mantener a sus clientes activos en un mercado altamente competitivo.
+
+La pérdida de usuarios impacta directamente en los ingresos.
+
+Es necesario identificar patrones de abandono y diseñar campañas de retención oportunas.
+
+## Objetivos
+
+* Desarrollar un modelo de predicción que:
+
+- Identifique clientes con alto - riesgo de abandono.
+- Ofrezca *insights* accionables para la retención.
+
+* Creacion de un panel que permita a los equipos de marketing personalizar ofertas y campañas para retener a estos clientes.
+
+Sera necesario también contar con:
+* Dataset consolidado de comportamiento de clientes, con variables relevantes.
+* Modelos de machine learning para clasificación y scoring de churn.
+* API que permita consultar la probabilidad de abandono en tiempo real.
+* Dashboards con segmentos de riesgo y recomendaciones de acciones.
+
+
 # Equipo
 
 <div align= 'center'>
