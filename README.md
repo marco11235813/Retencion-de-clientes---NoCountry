@@ -16,7 +16,7 @@ aqui va la introducción del producto
   <table align= 'center'>
     <tr align= 'center'>
       <td align= 'center'>
-        <img src='https://github.com/user-attachments/assets/94ee6990-0d7d-4804-b28d-f2a0a49ab024](https://avatars.githubusercontent.com/u/106486985?s=400&u=f2b5a4953b674b71e5df9e4c71c89ee2ae75fa65&v=4' width='200' height='200'><br><strong>Marco</strong><br>
+        <img src='https://avatars.githubusercontent.com/u/106486985?v=4' width='200' height='200'><br><strong>Marco</strong><br>
         <a href='link_linkedin'> <img src= '' style= 'width:'20px;'></a>
         <a href='link_github'> <img src= '' style= 'width:'20px;'></a>
       </td>
