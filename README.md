@@ -1,4 +1,4 @@
-<h1 align= 'center'><strong>NoCountry</strong></h1>
+<h1 align= 'center'><strong>Predicción de Churn y Retención de Clientes para FinTech</strong></h1>
 
 # Indice
 
@@ -51,8 +51,8 @@ Sera necesario también contar con:
       </td>
       <td align= 'center'>
         <img src='https://github.com/user-attachments/assets/d72bf324-b844-4938-ae94-b952657594df' width='200' height='200'><br><strong>Ludmila</strong><br>
-        <a href='link_linkedin'> <img src= 'assets\linkedin.png' style= 'width:20px;'></a>
-        <a href='link_github'> <img src= 'assets\github.png' style= 'width:20px;'></a>
+        <a href='https://www.linkedin.com/in/ludmila-andrea-sanchez/'> <img src= 'assets\linkedin.png' style= 'width:20px;'></a>
+        <a href='https://github.com/Ludmi0611'> <img src= 'assets\github.png' style= 'width:20px;'></a>
       </td>
     </tr>
   </table>
