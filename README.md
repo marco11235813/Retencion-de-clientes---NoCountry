@@ -30,7 +30,7 @@ Sera necesario también contar con:
 
 # Sobre Datalogic
   <p align="center">
-    <img src="assets/Logo_banner.png" alt="Logo de INNOVAPAY: Tu dinero seguro y en movimiento" width="600" height="300">
+    <img src="assets/consultora_logo.jpeg" alt="Logo de Datalogic: De los datos a la acción" width="600" height="300">
   </p>
   
 # Equipo
