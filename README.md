@@ -13,7 +13,7 @@ InNovaPay opera en el sector FinTech, un entorno digital altamente competitivo d
   </p>
 Nuestro objetivo para la empresa es transformar esta gestión de riesgo, trabajando en conjunto con los diferentes profesionales que integran el equipo de Datalogic, para desarrollar un modelo de predicción robusto y generando insights accionables para diseñar y ejecutar campañas de retención oportunas y altamente rentables.
 
-## Objetivos
+# Objetivos de Datalogic
 
 * Desarrollar un modelo de predicción que:
 
@@ -28,7 +28,11 @@ Sera necesario también contar con:
 * API que permita consultar la probabilidad de abandono en tiempo real.
 * Dashboards con segmentos de riesgo y recomendaciones de acciones.
 
-
+# Sobre Datalogic
+  <p align="center">
+    <img src="assets/Logo_banner.png" alt="Logo de INNOVAPAY: Tu dinero seguro y en movimiento" width="600" height="300">
+  </p>
+  
 # Equipo
 
 <div align= 'center'>
