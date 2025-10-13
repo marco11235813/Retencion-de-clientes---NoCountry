@@ -4,7 +4,7 @@
 
 - [Introduccion](#Introduccion)
 - [Objetivos](#ObjetivosdeDatalogic)
-- [Sobre Nosotros](#SobreDatalogic)
+- [Sobre Nosotros](#SobreNosotros)
 - [Equipo](#Equipo)
 
 # Introducción
