@@ -3,7 +3,7 @@
 # Indice
 
 - [Introduccion](#Introduccion)
-- [Objetivos](#Objetivos)
+- [Objetivos](#ObjetivosdeDatalogic)
 - [Sobre Nosotros](#SobreDatalogic)
 - [Equipo](#Equipo)
 
@@ -30,7 +30,7 @@ Sera necesario también contar con:
 * API que permita consultar la probabilidad de abandono en tiempo real.
 * Dashboards con segmentos de riesgo y recomendaciones de acciones.
 
-# Sobre Datalogic
+# Sobre Nosotros
   <p align="center">
     <img src="assets/consultora_logo.jpeg" alt="Logo de Datalogic: De los datos a la acción" width="600" height="300">
   </p>
