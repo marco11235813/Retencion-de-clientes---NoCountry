@@ -7,13 +7,13 @@
 - [Sobre Nosotros](#SobreDatalogic)
 - [Equipo](#Equipo)
 
-# Introduccion
-## Problematica de negocio
+# Introducción
+## Problematica del negocio
 InNovaPay opera en el sector FinTech, un entorno digital altamente competitivo donde la retención de clientes activos es un factor crítico para la sostenibilidad y el crecimiento. En este mercado dinámico, la pérdida de usuarios (churn) impacta directamente en la estabilidad de los ingresos y eleva los costos de adquisición. Actualmente, la identificación de clientes en riesgo de abandono es reactiva. Por ello, es imperativo implementar una solución que permita identificar de manera proactiva los patrones de comportamiento que conducen al abandono. 
   <p align="center">
     <img src="assets/Logo_banner.png" alt="Logo de INNOVAPAY: Tu dinero seguro y en movimiento" width="600" height="300">
   </p>
-Nuestro objetivo para la empresa es transformar esta gestión de riesgo, trabajando en conjunto con los diferentes profesionales que integran el equipo de Datalogic, para desarrollar un modelo de predicción robusto y generando insights accionables para diseñar y ejecutar campañas de retención oportunas y altamente rentables.
+Nuestro objetivo para la empresa es transformar esta gestión de riesgo, trabajando en conjunto con los diferentes profesionales que integran el equipo de Datalogic, para desarrollar un modelo de predicción robusto y generando insights accionables para diseñar y ejecutar campañas de retención oportunas y altamente rentables, dado que se informa que las instituciones que implementan IA para la optimización de procesos obtienen un retorno de inversión de 3.5× en 18 meses.
 
 # Objetivos de Datalogic
 
@@ -34,6 +34,13 @@ Sera necesario también contar con:
   <p align="center">
     <img src="assets/consultora_logo.jpeg" alt="Logo de Datalogic: De los datos a la acción" width="600" height="300">
   </p>
+Somos una consultora especializada en la implementación de soluciones de Inteligencia Artificial y Data Science con enfoque especializado para el sector FinTech.
+Nuestro equipo multidisciplinario está diseñado para cubrir todo el pipeline del proyecto, desde la ingesta de datos hasta el despliegue del modelo y la generación de insights de negocio.
+Nuestro Compromiso es llevar a nuestros clientes más allá de la simple predicción, entregando un sistema integral que:
+
+- Garantice la integridad de los datos.
+- Traduzca la predicción en valor monetario.
+- Provea la mayor capacidad predictiva con transparencia.
   
 # Equipo
 
