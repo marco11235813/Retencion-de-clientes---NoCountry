@@ -3,7 +3,7 @@
 # Indice
 
 - [Introduccion](#Introduccion)
-- [Objetivos](#ObjetivosdeDatalogic)
+- [Objetivos de Datalogic](#ObjetivosdeDatalogic)
 - [Sobre Nosotros](#SobreNosotros)
 - [Equipo](#Equipo)
 
