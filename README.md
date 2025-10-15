@@ -3,8 +3,8 @@
 # Indice
 
 - [Introduccion](#Introduccion)
-- [Objetivos de Datalogic](#Objetivos_de_Datalogic)
-- [Sobre Nosotros](#Sobre_Nosotros)
+- [Objetivos de Datalogic](#ObjetivosdeDatalogic)
+- [Sobre Nosotros](#SobreNosotros)
 - [Equipo](#Equipo)
 
 # Introducción
