@@ -31,6 +31,7 @@ Sera necesario también contar con:
 * Dashboards con segmentos de riesgo y recomendaciones de acciones.
 
 # Sobre Nosotros
+
   <p align="center">
     <img src="assets/consultora_logo.jpeg" alt="Logo de Datalogic: De los datos a la acción" width="600" height="300">
   </p>
