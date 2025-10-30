@@ -4,6 +4,7 @@
 
 - [Introduccion](#Introduccion)
 - [Objetivos de Datalogic](#ObjetivosdeDatalogic)
+- [Producto](#Producto)
 - [Sobre Nosotros](#SobreNosotros)
 - [Equipo](#Equipo)
 
@@ -29,6 +30,13 @@ Sera necesario también contar con:
 * Modelos de machine learning para clasificación y scoring de churn.
 * API que permita consultar la probabilidad de abandono en tiempo real.
 * Dashboards con segmentos de riesgo y recomendaciones de acciones.
+
+# Producto
+
+* [Informe EDA]()
+* [Dasboard](https://lookerstudio.google.com/reporting/3a55f164-2eb4-4b21-983b-08cdffef6786)
+* [Notebook Modelo]
+* [App Web]
 
 # Sobre Nosotros
 
