@@ -35,8 +35,8 @@ Sera necesario también contar con:
 
 * [Informe EDA]()
 * [Dasboard](https://lookerstudio.google.com/reporting/3a55f164-2eb4-4b21-983b-08cdffef6786)
-* [Notebook Modelo]
-* [App Web]
+* [Notebook Modelo]()
+* [App Web]()
 
 # Sobre Nosotros
 
