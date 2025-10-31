@@ -17,20 +17,13 @@ InNovaPay opera en el sector FinTech, un entorno digital altamente competitivo d
   </p>
 Nuestro objetivo para la empresa es transformar esta gestión de riesgo, trabajando en conjunto con los diferentes profesionales que integran el equipo de Datalogic, para desarrollar un modelo de predicción robusto y generando insights accionables para diseñar y ejecutar campañas de retención oportunas y altamente rentables, dado que se informa que las instituciones que implementan IA para la optimización de procesos obtienen un retorno de inversión de 3.5× en 18 meses.
 
-# Objetivos de Datalogic
-
+# Objetivos
+### El proyecto busca desarrollar los siguientes objetivos para tratar las necesidades del cliente
 * Desarrollar un modelo de predicción que:
-
-- Identifique clientes con alto - riesgo de abandono.
-- Ofrezca *insights* accionables para la retención.
-
-* Creacion de un panel que permita a los equipos de marketing personalizar ofertas y campañas para retener a estos clientes.
-
-Sera necesario también contar con:
-* Dataset consolidado de comportamiento de clientes, con variables relevantes.
-* Modelos de machine learning para clasificación y scoring de churn.
-* API que permita consultar la probabilidad de abandono en tiempo real.
-* Dashboards con segmentos de riesgo y recomendaciones de acciones.
+- Identifique clientes con alto riesgo de abandono.
+- Una API que permitirá a la fintech consultar la probabilidad de abandono en tiempo real.
+  
+* Se creará un panel que permitirá a los equipos de marketing visualizar datos relevantes y reportes para personalizar ofertas y campañas sobre los clientes.
 
 # Producto
 
@@ -51,7 +44,7 @@ Se utilizaron las siguientes herramientas para realizar el proyecto para el clie
   - *IA* - Apoyo en redacción, ideas y debbuging
   - *GitHub* - Control de versiones y colaboración
 
-# Sobre Nosotros
+# Nosotros
 
   <p align="center">
     <img src="assets/consultora_logo.jpeg" alt="Logo de Datalogic: De los datos a la acción" width="600" height="300">
