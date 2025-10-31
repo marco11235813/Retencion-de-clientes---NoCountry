@@ -5,6 +5,7 @@
 - [Introduccion](#Introduccion)
 - [Objetivos de Datalogic](#ObjetivosdeDatalogic)
 - [Producto](#Producto)
+- [Tecnologias utilizadas](#TecnologiasUtilizadas)
 - [Sobre Nosotros](#SobreNosotros)
 - [Equipo](#Equipo)
 
@@ -37,6 +38,18 @@ Sera necesario también contar con:
 * [Dasboard](https://lookerstudio.google.com/reporting/3a55f164-2eb4-4b21-983b-08cdffef6786)
 * [Notebook Modelo]()
 * [App Web]()
+
+# Tecnologias utilizadas
+Se utilizaron las siguientes herramientas para realizar el proyecto para el cliente.
+
+  - *Google BigQuery* - Almacenamiento y consulta de datos
+  - *Python* - Procesamiento y análisis de datos
+  - *Google Colab y VSCode* - Para el desarrollo del ETL, EDA y modelos
+  - *Looker Studio* - Para la visualización y el reporte de datos
+  - *Trello* - Organización del equipo y las tareas
+  - *Canva* - Diseño de logos, flujo de trabajo
+  - *IA* - Apoyo en redacción, ideas y debbuging
+  - *GitHub* - Control de versiones y colaboración
 
 # Sobre Nosotros
 
