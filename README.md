@@ -3,13 +3,13 @@
 # Indice
 
 - [Introduccion](#Introduccion)
-- [Objetivos de Datalogic](#ObjetivosdeDatalogic)
+- [Objetivos](#Objetivos)
 - [Producto](#Producto)
-- [Tecnologias utilizadas](#TecnologiasUtilizadas)
-- [Sobre Nosotros](#SobreNosotros)
+- [Tecnologias](#Tecnologias)
+- [Nosotros](#Nosotros)
 - [Equipo](#Equipo)
 
-# Introducción
+# Introduccion
 ## Problematica del negocio
 InNovaPay opera en el sector FinTech, un entorno digital altamente competitivo donde la retención de clientes activos es un factor crítico para la sostenibilidad y el crecimiento. En este mercado dinámico, la pérdida de usuarios impacta directamente en la estabilidad de los ingresos y eleva los costos de adquisición. Actualmente, la identificación de clientes en riesgo de abandono es reactiva. Por ello, es imperativo implementar una solución que permita identificar de manera proactiva los patrones de comportamiento que conducen al abandono. 
   <p align="center">
