@@ -1,272 +1,215 @@
+
+
 # app.py
 import streamlit as st
 import pandas as pd
 import numpy as np
 import os
 import io
-import pickle
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import classification_report, roc_auc_score
+import requests
+# import torch
+import joblib
+import subprocess
+import gdown
 import matplotlib.pyplot as plt
+# --------------------------------------------------------------
+# from sklearn.base import BaseEstimator, TransformerMixin
+# from sentence_transformers import SentenceTransformer
+# ------------------------------------------------------------
+# clase BertTransformer
 
+# Para tratar el texto
+# class BertTransformer(BaseEstimator, TransformerMixin):
+#     def __init__(self, model_name='all-MiniLM-L6-v2'):
+#         self.model_name = model_name
+#         self.model = SentenceTransformer(model_name)
+
+#     def fit(self, X, y=None):
+#         return self
+
+#     def transform(self, X):
+#         # Asegurar que X es iterable de strings
+#         if hasattr(X, "iloc"):
+#             X = X.iloc[:, 0]
+#         elif isinstance(X, list):
+#             X = pd.Series(X)
+#         X = X.fillna('').astype(str)
+#         embeddings = self.model.encode(X.tolist(), show_progress_bar=False)
+#         return embeddings
+
+# ------------------------------------------------------------
+# CONFIGURACIÓN DE PÁGINA
+# ------------------------------------------------------------
 st.set_page_config(page_title="App Innovapay", layout="wide")
 
-# ----- Helpers -----
-@st.cache_data
-def load_local_data(path="data/synthetic/churn_data.csv"):
-    if os.path.exists(path):
-        return pd.read_csv(path)
-    return None
+# ------------------------------------------------------------
+# INSTALACIÓN Y CONFIGURACIÓN DE LIBRERÍAS
+# ------------------------------------------------------------
+subprocess.run(["pip", "install", "gdown"], check=True)
 
-@st.cache_data
-def train_simple_model(df, target_col="churn"):
-    """
-    Entrena un modelo logístico simple usando todas las columnas numéricas
-    (salvo target) y devuelve (model, scaler, X_test, y_test).
-    """
-    df2 = df.copy()
-    if target_col not in df2.columns:
-        raise ValueError(f"Target column '{target_col}' no encontrada en el dataframe.")
-    # seleccionar columnas numéricas (excluye target)
-    X = df2.select_dtypes(include=[np.number]).drop(columns=[target_col], errors='ignore')
-    y = df2[target_col].astype(int)
-    if X.shape[1] == 0:
-        raise ValueError("No hay columnas numéricas para entrenar el modelo. Preprocesamiento requerido.")
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-    scaler = StandardScaler().fit(X_train)
-    X_train_s = scaler.transform(X_train)
-    X_test_s = scaler.transform(X_test)
-    model = LogisticRegression(max_iter=1000).fit(X_train_s, y_train)
-    return model, scaler, X_train, X_test, y_train, y_test
+# ------------------------------------------------------------
+# RUTAS Y PARÁMETROS FIJOS
+# ------------------------------------------------------------
+EDA_NOTEBOOK_GITHUB_URL = "https://github.com/marco11235813/Retencion-de-clientes---NoCountry/blob/main/doc/informe_eda.pdf"
+LOOKER_DASHBOARD_URL = "https://lookerstudio.google.com/embed/reporting/3a55f164-2eb4-4b21-983b-08cdffef6786/page/p_12345"
+DRIVE_FILE_ID = "1xI5TieWDkdS4j5yT5umMrjFtUE_jCm4a"
+MODEL_LOCAL_PATH = "modelo_churn.joblib"
 
+# ------------------------------------------------------------
+# DESCARGA Y CARGA DEL MODELO DESDE GOOGLE DRIVE (comentado temporalmente)
+# ------------------------------------------------------------
+# """
+# @st.cache_resource
+# def load_model_from_drive():
+#     try:
+#         if not os.path.exists(MODEL_LOCAL_PATH):
+#             url = f"https://drive.google.com/uc?id={DRIVE_FILE_ID}"
+#             st.info("📥 Descargando modelo desde Google Drive (esto puede tardar unos segundos)...")
+#             gdown.download(url, MODEL_LOCAL_PATH, quiet=False)
+
+#         try:
+#             model = joblib.load(MODEL_LOCAL_PATH)
+#         except Exception:
+#             model = torch.load(MODEL_LOCAL_PATH, map_location=torch.device('cpu'))
+
+#         return model
+
+#     except Exception as e:
+#         st.error(f"❌ No se pudo cargar el modelo. Verificá el enlace o el archivo en Drive.\n\nDetalles: {e}")
+#         return None
+# """
+
+# ------------------------------------------------------------
+# FUNCIONES AUXILIARES DE VISUALIZACIÓN
+# ------------------------------------------------------------
 def plot_histograms(df, ncols=2, max_vars=6):
-    numeric = df.select_dtypes(include=[np.number]).columns.tolist()
-    numeric = numeric[:max_vars]
-    n = len(numeric)
-    nrows = (n + ncols - 1) // ncols
+    numeric = df.select_dtypes(include=[np.number]).columns.tolist()[:max_vars]
+    nrows = (len(numeric) + ncols - 1) // ncols
     fig, axs = plt.subplots(nrows=nrows, ncols=ncols, figsize=(6*ncols, 3*nrows))
     axs = np.array(axs).reshape(-1)
     for i, col in enumerate(numeric):
-        axs[i].hist(df[col].dropna())
+        axs[i].hist(df[col].dropna(), bins=20, color="#0078ff", alpha=0.7)
         axs[i].set_title(col)
-    # hide unused axes
-    for j in range(n, len(axs)):
+    for j in range(len(numeric), len(axs)):
         axs[j].axis("off")
     plt.tight_layout()
     return fig
 
-def plot_corr_heatmap(df):
-    numeric = df.select_dtypes(include=[np.number])
-    if numeric.shape[1] < 2:
-        return None
-    corr = numeric.corr()
-    fig, ax = plt.subplots(figsize=(6, 5))
-    im = ax.imshow(corr, interpolation='nearest')
-    ax.set_xticks(np.arange(len(corr.columns)))
-    ax.set_yticks(np.arange(len(corr.columns)))
-    ax.set_xticklabels(corr.columns, rotation=45, ha="right")
-    ax.set_yticklabels(corr.columns)
-    # annotate
-    for i in range(len(corr.columns)):
-        for j in range(len(corr.columns)):
-            ax.text(j, i, f"{corr.iloc[i,j]:.2f}", ha="center", va="center", fontsize=8)
-    plt.tight_layout()
-    return fig
-
-# ----- Layout: SIDEBAR -----
+# ------------------------------------------------------------
+# SIDEBAR
+# ------------------------------------------------------------
 st.sidebar.title("Innovapay")
-selection = st.sidebar.radio("Navegar", ["Informe", "Dashboard", "Riesgo de Churn"])
+# 👇 Eliminamos la opción de predicción del menú
+selection = st.sidebar.radio("Navegar", ["Informe EDA", "Dashboard"])
 
-# Useful file helpers in sidebar
-st.sidebar.markdown("---")
-st.sidebar.markdown("**Datos / Modelo**")
-uploaded = st.sidebar.file_uploader("Subí un CSV (data.csv) para EDA / entrenamiento", type=["csv"])
-model_file = st.sidebar.file_uploader("Subí un modelo (model.pkl) opcional", type=["pkl"])
-
-# load local data if exists, else use uploaded
-data = None
-if uploaded is not None:
-    try:
-        data = pd.read_csv(uploaded)
-    except Exception as e:
-        st.sidebar.error(f"Error leyendo CSV subido: {e}")
-else:
-    data = load_local_data("data.csv")
-
-# if model uploaded, load it
-uploaded_model = None
-if model_file is not None:
-    try:
-        uploaded_model = pickle.load(model_file)
-    except Exception as e:
-        st.sidebar.error(f"No se pudo cargar el modelo: {e}")
-        uploaded_model = None
-
-# ----- Informe (EDA) -----
-if selection == "Informe":
+# ------------------------------------------------------------
+# INFORME EDA
+# ------------------------------------------------------------
+if selection == "Informe EDA":
     st.header("📄 Informe — Análisis Exploratorio (EDA)")
-    st.markdown(
-        """
-        **Introducción**  
-        Este informe muestra un análisis exploratorio rápido del dataset disponible. 
-        Si no hay datos, podés subir un CSV en la barra lateral (sidebar).
-        """
-    )
+    st.markdown("""
+    **Introducción**  
+    Este informe muestra el análisis exploratorio del dataset de clientes,
+    con las principales distribuciones, correlaciones y patrones asociados al churn.
+    """)
 
-    if data is None:
-        st.info("No se detectó un dataset local ni se subió uno. Subí un archivo CSV en la barra lateral para ver el EDA.")
+    EDA_PDF_PATH = "reports/informe_eda.pdf"
+
+    # Si el archivo existe localmente, se muestra embebido en la app
+    if os.path.exists(EDA_PDF_PATH):
+        st.markdown("🧠 Visualización del informe EDA completo:")
+        with open(EDA_PDF_PATH, "rb") as f:
+            pdf_data = f.read()
+        st.download_button("📥 Descargar informe (PDF)", data=pdf_data, file_name="informe_eda.pdf")
+        st.components.v1.iframe(EDA_PDF_PATH, width=1200, height=800)
     else:
-        st.subheader("Resumen rápido")
-        st.write("Dimensiones:", data.shape)
-        st.write("Columnas:", list(data.columns))
-        st.write("Primeras filas:")
-        st.dataframe(data.head())
+        # Si no se encuentra el archivo local, se muestra embebido desde GitHub
+        st.warning("⚠️ No se encontró el archivo local `reports/informe_eda.pdf`. Se mostrará el informe desde GitHub.")
+        st.components.v1.iframe(
+            "https://github.com/marco11235813/Retencion-de-clientes---NoCountry/raw/main/doc/informe_eda.pdf",
+            width=1200, height=800
+        )
 
-        st.subheader("Estadísticas descriptivas")
-        st.write(data.describe(include="all").transpose())
-
-        # Histograms
-        st.subheader("Histogramas (variables numéricas)")
-        fig_hist = plot_histograms(data, ncols=2, max_vars=6)
-        st.pyplot(fig_hist)
-
-        # Corr
-        st.subheader("Matriz de correlación (numéricas)")
-        fig_corr = plot_corr_heatmap(data)
-        if fig_corr is not None:
-            st.pyplot(fig_corr)
-        else:
-            st.info("No hay suficientes variables numéricas para calcular correlación.")
-
-        # Insights area (simple heuristics)
-        st.subheader("Observaciones automáticas (breves)")
-        obs = []
-        if data.select_dtypes(include=[np.number]).shape[1] > 0:
-            obs.append("- Hay variables numéricas: revisar outliers y distribuciones.")
-        if "churn" in data.columns:
-            churn_rate = data["churn"].mean() if data["churn"].dtype.kind in "biufc" else None
-            if churn_rate is not None:
-                obs.append(f"- Tasa de churn (promedio de `churn`): {churn_rate:.3f}")
-        if len(obs) == 0:
-            st.write("No se detectaron observaciones automáticas. Revisá los datos manualmente.")
-        else:
-            for o in obs:
-                st.write(o)
-
-# ----- Dashboard (Looker Studio embed) -----
-elif selection == "Dashboard":
-    st.header("📊 Dashboard (Looker Studio)")
-    st.markdown(
-        """
-        Aquí podés embeber un informe de Looker Studio.  
-        Pegar la URL pública de tu informe abajo (compartir → habilitar acceso).
-        """
-    )
-    report_url = st.text_input("https://lookerstudio.google.com/s/phHIKGaTlyQ", value="")
-    if report_url:
-        # guardá la URL en un iframe
-        st.markdown("**Informe embebido:**")
-        # iframe-friendly URL handling could be required; el usuario debe proporcionar la URL embebible
-        iframe = f'<iframe src="{report_url}" width="100%" height="800" frameborder="0" style="border:0" allowfullscreen></iframe>'
-        st.components.v1.html(iframe, height=800, scrolling=True)
-    else:
-        st.info("Pegar aquí la URL pública de tu informe de Looker Studio para embeberlo.")
-
-# ----- Riesgo de Churn -----
-elif selection == "Riesgo de Churn":
-    st.header("⚠️ Riesgo de Churn — Predicción")
-    st.markdown("Ingresá las características del cliente para predecir su probabilidad de churn.")
-
-    model = None
-    scaler = None
-    X_test = None
-    y_test = None
-
-    # if a model pickle was uploaded and it includes scaler, use it
-    if uploaded_model is not None:
-        # esperar que el pickle sea un dict {'model':..., 'scaler':..., 'columns':...}
-        if isinstance(uploaded_model, dict) and "model" in uploaded_model:
-            model = uploaded_model["model"]
-            scaler = uploaded_model.get("scaler", None)
-            model_cols = uploaded_model.get("columns", None)
-            st.success("Modelo cargado desde archivo .pkl")
-        else:
-            st.warning("El modelo subido no sigue el formato esperado (dict con clave 'model'). Intentá entrenar con datos.")
-            uploaded_model = None
-
-    # si hay data pero no modelo cargado, ofrecer entrenar uno simple
-    if model is None and data is not None:
-        st.info("Se detectó dataset. Podés entrenar un modelo simple (logistic regression) usando columnas numéricas.")
-        if st.button("Entrenar modelo simple con dataset detectado"):
-            try:
-                model, scaler, X_train, X_test, y_train, y_test = train_simple_model(data, target_col="churn")
-                st.success("Modelo entrenado correctamente.")
-                # mostrar métricas
-                y_pred = model.predict(scaler.transform(X_test))
-                report = classification_report(y_test, y_pred, output_dict=True)
-                st.write("Reporte de clasificación (test set):")
-                st.dataframe(pd.DataFrame(report).transpose())
-                auc = roc_auc_score(y_test, model.predict_proba(scaler.transform(X_test))[:,1])
-                st.write(f"AUC ROC (test): {auc:.3f}")
-            except Exception as e:
-                st.error(f"No se pudo entrenar el modelo: {e}")
-
+    # Enlace al final del todo
     st.markdown("---")
-    st.subheader("Formulario de características (valores de ejemplo)")
+    st.markdown(f"📘 [Abrir informe completo en GitHub]({EDA_NOTEBOOK_GITHUB_URL})")
 
-    # Si hay un modelo y scaler, intentamos usar las columnas del X_train o inferir variables numéricas
-    example_num_cols = []
-    if data is not None:
-        example_num_cols = data.select_dtypes(include=[np.number]).columns.tolist()
-        if "churn" in example_num_cols:
-            example_num_cols.remove("churn")
 
-    # if no numeric columns, allow user to define a simple numeric vector
-    if example_num_cols:
-        st.info("Si entrenaste o cargaste un modelo, los campos esperados son las columnas numéricas del dataset.")
-        inputs = {}
-        with st.form(key="predict_form"):
-            for col in example_num_cols:
-                # default value = median
-                default = float(data[col].median()) if col in data.columns else 0.0
-                inputs[col] = st.number_input(col, value=default, format="%.4f")
-            submit = st.form_submit_button("Predecir riesgo")
-        if submit:
-            if model is None:
-                st.error("No hay un modelo disponible. Entrenalo o subí un model.pkl en la sidebar.")
-            else:
-                X_new = np.array([inputs[c] for c in example_num_cols]).reshape(1, -1)
-                if scaler is not None:
-                    X_new_s = scaler.transform(X_new)
-                else:
-                    X_new_s = X_new
-                proba = model.predict_proba(X_new_s)[0,1]
-                st.success(f"Probabilidad estimada de churn: {proba:.3f}")
-    else:
-        st.info("No se detectan columnas numéricas en el dataset. Podés subir un dataset con variables numéricas o definir manualmente las features.")
-        with st.form("manual"):
-            n = st.number_input("Cantidad de features (numéricas) a ingresar", min_value=1, max_value=20, value=3)
-            inputs = {}
-            for i in range(int(n)):
-                inputs[f"x{i+1}"] = st.number_input(f"x{i+1}", value=0.0, format="%.4f")
-            submit2 = st.form_submit_button("Predecir con valores manuales")
-        if submit2:
-            if model is None:
-                st.error("No hay un modelo disponible. Entrenalo o subí un model.pkl en la sidebar.")
-            else:
-                X_new = np.array([inputs[k] for k in sorted(inputs.keys())]).reshape(1, -1)
-                if scaler is not None:
-                    X_new_s = scaler.transform(X_new)
-                else:
-                    X_new_s = X_new
-                proba = model.predict_proba(X_new_s)[0,1]
-                st.success(f"Probabilidad estimada de churn: {proba:.3f}")
+# ------------------------------------------------------------
+# DASHBOARD (LOOKER STUDIO)
+# ------------------------------------------------------------
+elif selection == "Dashboard":
+    st.header("📊 Dashboard Interactivo — Looker Studio")
+    st.markdown("""
+    Este dashboard permite visualizar métricas clave sobre el comportamiento de los clientes,
+    su evolución temporal y las tasas de retención.
+    """)
+    st.components.v1.iframe(LOOKER_DASHBOARD_URL, width=1200, height=800, scrolling=True)
 
-# ----- Footer -----
+# ------------------------------------------------------------
+# PREDICCIÓN DE RIESGO DE CHURN (OCULTO EN LA APP)
+# ------------------------------------------------------------
+# """
+# elif selection == "Predicción Riesgo Churn":
+#     st.header("⚠️ Predicción de Riesgo de Churn")
+#     st.markdown("Ingresá los datos del cliente para obtener una predicción sobre su probabilidad de churn.")
+
+#     model = load_model_from_drive()
+#     if model is None:
+#         st.stop()
+
+#     with st.form("churn_form"):
+#         st.subheader("🧩 Datos del cliente")
+
+#         col1, col2 = st.columns(2)
+
+#         with col1:
+#             points_in_wallet = st.number_input("Puntos en la billetera", min_value=0.0, step=0.01, format="%.2f")
+#             avg_transaction_value = st.number_input("Valor promedio de transacción", min_value=0.0, step=0.01, format="%.2f")
+#             avg_frequency_login_days = st.number_input("Frecuencia promedio de login (días)", min_value=0.0, step=0.01, format="%.2f")
+
+#         with col2:
+#             avg_tx_amount = st.number_input("Monto promedio de transacciones", min_value=0.0, step=0.01, format="%.2f")
+#             days_since_last_login = st.number_input("Días desde el último login", min_value=0, step=1)
+#             membership_category = st.selectbox(
+#                 "Categoría de membresía",
+#                 ["Platinum Membership", "Premium Membership", "No Membership",
+#                  "Gold Membership", "Silver Membership", "Basic Membership"]
+#             )
+
+#         feedback = st.text_input("Feedback del cliente", "")
+
+#         submitted = st.form_submit_button("🔍 Predecir")
+
+#     if submitted:
+#         try:
+#             X_input = pd.DataFrame({
+#                 "points_in_wallet": [points_in_wallet],
+#                 "avg_transaction_value": [avg_transaction_value],
+#                 "avg_frequency_login_days": [avg_frequency_login_days],
+#                 "avg_tx_amount": [avg_tx_amount],
+#                 "days_since_last_login": [days_since_last_login],
+#                 "membership_category": [membership_category],
+#                 "feedback": [feedback],
+#             })
+
+#             prediction = model.predict(X_input)[0]
+#             proba = model.predict_proba(X_input)[0][1]
+
+#             if prediction == 1:
+#                 st.error(f"🚨 El cliente tiene **alto riesgo de churn** ({proba:.2%})")
+#             else:
+#                 st.success(f"✅ El cliente **no presenta riesgo de churn** ({proba:.2%})")
+
+#         except Exception as e:
+#             st.error(f"⚠️ Error al realizar la predicción: {e}")
+# """
+
+# ------------------------------------------------------------
+# FOOTER
+# ------------------------------------------------------------
 st.sidebar.markdown("---")
-st.sidebar.markdown("App creada para Innovapay")
+st.sidebar.markdown("Desarrollado por **Innovapay Data Team** 💡")
 
 
 
