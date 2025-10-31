@@ -134,7 +134,6 @@ if selection == "Informe EDA":
     st.markdown("---")
     st.markdown(f"📘 [Abrir informe completo en GitHub]({EDA_NOTEBOOK_GITHUB_URL})")
 
-
 # ------------------------------------------------------------
 # DASHBOARD (LOOKER STUDIO)
 # ------------------------------------------------------------
