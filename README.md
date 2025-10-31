@@ -29,8 +29,7 @@ Nuestro objetivo para la empresa es transformar esta gestión de riesgo, trabaja
 
 * [Informe EDA](doc/informe_eda.pdf)
 * [Dasboard](https://lookerstudio.google.com/reporting/3a55f164-2eb4-4b21-983b-08cdffef6786)
-* [Notebook Modelo](https://colab.research.google.com/drive/13-Io57WIchbb5u52-1BkIKR83vawcgw0#scrollTo=A2g7IKopeex6)
-* [App Web](https://0cc23bde8585d441c2.gradio.live)
+* [Notebook Modelo y app incorporada](https://colab.research.google.com/drive/13-Io57WIchbb5u52-1BkIKR83vawcgw0#scrollTo=A2g7IKopeex6)
 
 # Tecnologias
 Se utilizaron las siguientes herramientas para realizar el proyecto para el cliente.
