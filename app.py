@@ -148,20 +148,20 @@ selection = st.sidebar.radio("Navegar", ["Informe EDA", "Dashboard"])
 
 st.header("📊 Informe EDA")
 
-pdf_path = "doc/informe_eda.pdf"
+pdf_path = "doc/Informe_EDA.pdf"
+github_url = "https://github.com/usuario/repositorio/blob/main/doc/Informe_EDA.pdf"
 
 if os.path.exists(pdf_path):
     with open(pdf_path, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
     pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
-else:
-    st.warning("El archivo Informe_EDA.pdf no se encuentra en la carpeta 'doc'.")
 
+st.markdown(f"🔗 [Abrir Informe EDA en GitHub]({github_url})")
 # ------------------------------------------------------------
 # DASHBOARD (LOOKER STUDIO)
 # ------------------------------------------------------------
-if selection == "Dashboard":
+elif selection == "Dashboard":
     st.header("📊 Dashboard Interactivo — Looker Studio")
     st.markdown("""
     Este dashboard permite visualizar métricas clave sobre el comportamiento de los clientes,
