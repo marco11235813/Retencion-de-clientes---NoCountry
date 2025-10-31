@@ -32,6 +32,25 @@ Nuestro objetivo para la empresa es transformar esta gestión de riesgo, trabaja
 * [Notebook Modelo y app incorporada](https://colab.research.google.com/drive/13-Io57WIchbb5u52-1BkIKR83vawcgw0#scrollTo=A2g7IKopeex6)
 * [Enlace a la app directa](https://d6006fa54796b75f4d.gradio.live)
 
+# App de Streamlit
+
+🧠 App Innovapay — Análisis de Riesgo de Churn
+
+Esta aplicación muestra un informe exploratorio de datos (EDA) y visualizaciones interactivas
+desarrolladas en Streamlit.
+
+## 🚀 Despliegue
+Esta app se encuentra alojada en [Streamlit Cloud](https://streamlit.io/cloud).
+
+Para ejecutarla localmente:
+
+```bash
+git clone https://github.com/TU_USUARIO/TU_REPO.git
+cd TU_REPO
+pip install -r requirements.txt
+streamlit run app.py
+
+
 # Tecnologias
 Se utilizaron las siguientes herramientas para realizar el proyecto para el cliente.
 

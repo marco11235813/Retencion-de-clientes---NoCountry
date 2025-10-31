@@ -7,6 +7,7 @@ import numpy as np
 import os
 import io
 import requests
+import base64
 # import torch
 import joblib
 import subprocess
@@ -102,6 +103,7 @@ st.sidebar.title("Innovapay")
 # 👇 Eliminamos la opción de predicción del menú
 selection = st.sidebar.radio("Navegar", ["Informe EDA", "Dashboard"])
 
+
 # ------------------------------------------------------------
 # INFORME EDA
 # ------------------------------------------------------------
@@ -110,29 +112,41 @@ if selection == "Informe EDA":
     st.markdown("""
     **Introducción**  
     Este informe muestra el análisis exploratorio del dataset de clientes,
-    con las principales distribuciones, correlaciones y patrones asociados al churn.
+    incluyendo análisis descriptivo, y métricas mas importantes asociadas al churn.
     """)
 
-    EDA_PDF_PATH = "reports/informe_eda.pdf"
+    pdf_path = os.path.join("doc", "informe_eda.pdf")
 
-    # Si el archivo existe localmente, se muestra embebido en la app
-    if os.path.exists(EDA_PDF_PATH):
-        st.markdown("🧠 Visualización del informe EDA completo:")
-        with open(EDA_PDF_PATH, "rb") as f:
-            pdf_data = f.read()
-        st.download_button("📥 Descargar informe (PDF)", data=pdf_data, file_name="informe_eda.pdf")
-        st.components.v1.iframe(EDA_PDF_PATH, width=1200, height=800)
+    if os.path.exists(pdf_path):
+        with open(pdf_path, "rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+
+        # Mostrar el PDF directamente en la app
+        pdf_display = f"""
+            <iframe src="data:application/pdf;base64,{base64_pdf}"
+                    width="100%" height="850" type="application/pdf"></iframe>
+        """
+        st.markdown(pdf_display, unsafe_allow_html=True)
+
+        # Opción para descargarlo
+        with open(pdf_path, "rb") as f:
+            st.download_button(
+                label="⬇️ Descargar informe EDA (PDF)",
+                data=f,
+                file_name="informe_eda.pdf",
+                mime="application/pdf"
+            )
+
     else:
-        # Si no se encuentra el archivo local, se muestra embebido desde GitHub
-        st.warning("⚠️ No se encontró el archivo local `reports/informe_eda.pdf`. Se mostrará el informe desde GitHub.")
-        st.components.v1.iframe(
-            "https://github.com/marco11235813/Retencion-de-clientes---NoCountry/raw/main/doc/informe_eda.pdf",
-            width=1200, height=800
-        )
+        st.warning("⚠️ No se encontró el archivo local 'informe_eda.pdf' en la carpeta 'doc/'. Verificá su ubicación.")
 
-    # Enlace al final del todo
+    # Enlace al repositorio (versión online del informe)
     st.markdown("---")
-    st.markdown(f"📘 [Abrir informe completo en GitHub]({EDA_NOTEBOOK_GITHUB_URL})")
+    st.markdown(
+        f"📘 [Abrir informe completo en GitHub]({EDA_NOTEBOOK_GITHUB_URL})"
+    )
+
+
 
 # ------------------------------------------------------------
 # DASHBOARD (LOOKER STUDIO)
@@ -207,8 +221,32 @@ elif selection == "Dashboard":
 # ------------------------------------------------------------
 # FOOTER
 # ------------------------------------------------------------
-st.sidebar.markdown("---")
-st.sidebar.markdown("Desarrollado por **Innovapay Data Team** 💡")
+
+# --- Logo en el footer del sidebar ---
+logo_path = "assets/consultora_logo.jpeg"  # ruta local
+
+def sidebar_footer_logo():
+    if os.path.exists(logo_path):
+        with open(logo_path, "rb") as f:
+            data = f.read()
+        encoded = base64.b64encode(data).decode()
+        logo_html = f"""
+            <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+                        text-align: center;">
+                <img src="data:image/jpeg;base64,{encoded}" width="120">
+                <p style="font-size: 12px; color: gray; margin-top: 5px;">© 2025 Innovapay</p>
+            </div>
+        """
+        st.markdown(logo_html, unsafe_allow_html=True)
+    else:
+        st.warning("⚠️ No se encontró el logo en 'doc/logo_empresa.jpeg'")
+
+# Llamar al final del sidebar
+with st.sidebar:
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("Desarrollado por **Datalogic Data Team** 💡")
+    sidebar_footer_logo()
+
 
 
 
