@@ -48,7 +48,8 @@ Para ejecutarla localmente:
 git clone https://github.com/TU_USUARIO/TU_REPO.git
 cd TU_REPO
 pip install -r requirements.txt
-streamlit run app.py```
+streamlit run app.py
+```
 
 
 LINK A LA APP EN STREAMLIT CLOUD: [LINK AQUI](https://retencion-de-clientes---nocountry-nnsjcnbngfpvxntsvqcmua.streamlit.app/)
