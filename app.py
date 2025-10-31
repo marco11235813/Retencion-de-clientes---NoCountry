@@ -107,46 +107,56 @@ selection = st.sidebar.radio("Navegar", ["Informe EDA", "Dashboard"])
 # ------------------------------------------------------------
 # INFORME EDA
 # ------------------------------------------------------------
-if selection == "Informe EDA":
-    st.header("📄 Informe — Análisis Exploratorio (EDA)")
-    st.markdown("""
-    **Introducción**  
-    Este informe muestra el análisis exploratorio del dataset de clientes,
-    incluyendo análisis descriptivo, y métricas mas importantes asociadas al churn.
-    """)
+# if selection == "Informe EDA":
+#     st.header("📄 Informe — Análisis Exploratorio (EDA)")
+#     st.markdown("""
+#     **Introducción**  
+#     Este informe muestra el análisis exploratorio del dataset de clientes,
+#     incluyendo análisis descriptivo, y métricas mas importantes asociadas al churn.
+#     """)
 
-    pdf_path = os.path.join("doc", "informe_eda.pdf")
+#     pdf_path = os.path.join("doc", "informe_eda.pdf")
 
-    if os.path.exists(pdf_path):
-        with open(pdf_path, "rb") as f:
-            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+#     if os.path.exists(pdf_path):
+#         with open(pdf_path, "rb") as f:
+#             base64_pdf = base64.b64encode(f.read()).decode('utf-8')
 
-        # Mostrar el PDF directamente en la app
-        pdf_display = f"""
-            <iframe src="data:application/pdf;base64,{base64_pdf}"
-                    width="100%" height="850" type="application/pdf"></iframe>
-        """
-        st.markdown(pdf_display, unsafe_allow_html=True)
+#         # Mostrar el PDF directamente en la app
+#         pdf_display = f"""
+#             <iframe src="data:application/pdf;base64,{base64_pdf}"
+#                     width="100%" height="850" type="application/pdf"></iframe>
+#         """
+#         st.markdown(pdf_display, unsafe_allow_html=True)
 
-        # Opción para descargarlo
-        with open(pdf_path, "rb") as f:
-            st.download_button(
-                label="⬇️ Descargar informe EDA (PDF)",
-                data=f,
-                file_name="informe_eda.pdf",
-                mime="application/pdf"
-            )
+#         # Opción para descargarlo
+#         with open(pdf_path, "rb") as f:
+#             st.download_button(
+#                 label="⬇️ Descargar informe EDA (PDF)",
+#                 data=f,
+#                 file_name="informe_eda.pdf",
+#                 mime="application/pdf"
+#             )
 
-    else:
-        st.warning("⚠️ No se encontró el archivo local 'informe_eda.pdf' en la carpeta 'doc/'. Verificá su ubicación.")
+#     else:
+#         st.warning("⚠️ No se encontró el archivo local 'informe_eda.pdf' en la carpeta 'doc/'. Verificá su ubicación.")
 
-    # Enlace al repositorio (versión online del informe)
-    st.markdown("---")
-    st.markdown(
-        f"📘 [Abrir informe completo en GitHub]({EDA_NOTEBOOK_GITHUB_URL})"
-    )
+#     # Enlace al repositorio (versión online del informe)
+#     st.markdown("---")
+#     st.markdown(
+#         f"📘 [Abrir informe completo en GitHub]({EDA_NOTEBOOK_GITHUB_URL})"
+#     )
 
+st.header("📊 Informe EDA")
 
+pdf_path = "doc/Informe_EDA.pdf"
+
+if os.path.exists(pdf_path):
+    with open(pdf_path, "rb") as f:
+        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px"></iframe>'
+    st.markdown(pdf_display, unsafe_allow_html=True)
+else:
+    st.warning("El archivo Informe_EDA.pdf no se encuentra en la carpeta 'doc'.")
 
 # ------------------------------------------------------------
 # DASHBOARD (LOOKER STUDIO)

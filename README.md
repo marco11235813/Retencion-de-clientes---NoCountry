@@ -48,7 +48,7 @@ Para ejecutarla localmente:
 git clone https://github.com/TU_USUARIO/TU_REPO.git
 cd TU_REPO
 pip install -r requirements.txt
-streamlit run app.py
+streamlit run app.py```
 
 
 LINK A LA APP EN STREAMLIT CLOUD: [LINK AQUI](https://retencion-de-clientes---nocountry-nnsjcnbngfpvxntsvqcmua.streamlit.app/)
@@ -71,6 +71,8 @@ Se utilizaron las siguientes herramientas para realizar el proyecto para el clie
   <p align="center">
     <img src="assets/consultora_logo.jpeg" alt="Logo de Datalogic: De los datos a la acción" width="600" height="300">
   </p>
+
+
 Somos una consultora especializada en la implementación de soluciones de Inteligencia Artificial y Data Science con enfoque especializado para el sector FinTech.
 Nuestro equipo multidisciplinario está diseñado para cubrir todo el pipeline del proyecto, desde la ingesta de datos hasta el despliegue del modelo y la generación de insights de negocio.
 Nuestro Compromiso es llevar a nuestros clientes más allá de la simple predicción, entregando un sistema integral que:
@@ -78,6 +80,7 @@ Nuestro Compromiso es llevar a nuestros clientes más allá de la simple predicc
 - Garantice la integridad de los datos.
 - Traduzca la predicción en valor monetario.
 - Provea la mayor capacidad predictiva con transparencia.
+
   
 # Equipo
 
