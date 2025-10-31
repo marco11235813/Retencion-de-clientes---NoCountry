@@ -53,7 +53,7 @@ subprocess.run(["pip", "install", "gdown"], check=True)
 # ------------------------------------------------------------
 EDA_NOTEBOOK_GITHUB_URL = "https://github.com/marco11235813/Retencion-de-clientes---NoCountry/blob/main/doc/informe_eda.pdf"
 LOOKER_DASHBOARD_URL = "https://lookerstudio.google.com/embed/reporting/3a55f164-2eb4-4b21-983b-08cdffef6786/page/p_12345"
-DRIVE_FILE_ID = "1xI5TieWDkdS4j5yT5umMrjFtUE_jCm4a"
+DRIVE_FILE_ID = "1-BQyYY_KpMcrHg6mjoGALcHgxCmErEM9"
 MODEL_LOCAL_PATH = "modelo_churn.joblib"
 
 # ------------------------------------------------------------
@@ -105,51 +105,26 @@ selection = st.sidebar.radio("Navegar", ["Informe EDA", "Dashboard"])
 
 
 # ------------------------------------------------------------
-# INFORME EDA
+# ------------------------------------------------------------
+# INFORME EDA (desde Google Drive)
 # ------------------------------------------------------------
 if selection == "Informe EDA":
-    import base64  # 👈 necesario para codificar el PDF
-    import os
-
     st.header("📄 Informe — Análisis Exploratorio (EDA)")
     st.markdown("""
     **Introducción**  
     Este informe muestra el análisis exploratorio del dataset de clientes,
-    incluyendo análisis descriptivo, distribuciones y métricas clave asociadas al churn.
+    incluyendo análisis descriptivo, distribuciones y métricas más importantes asociadas al churn.
     """)
 
-    # Ruta del PDF local (asegurate de tenerlo en la carpeta /doc del proyecto)
-    pdf_path = os.path.join("doc", "informe_eda.pdf")
+    # ID del archivo PDF en Google Drive
+    DRIVE_FILE_ID = "1xI5TieWDkdS4j5yT5umMrjFtUE_jCm4a"
+    pdf_url = f"https://drive.google.com/file/d/{DRIVE_FILE_ID}/preview"
 
-    if os.path.exists(pdf_path):
-        with open(pdf_path, "rb") as f:
-            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+    # Mostrar el PDF usando el visor integrado de Google Drive
+    st.components.v1.iframe(pdf_url, width=1200, height=850, scrolling=True)
 
-        # Mostrar el PDF directamente en la app
-        pdf_display = f"""
-        <iframe src="data:application/pdf;base64,{base64_pdf}" 
-                width="100%" height="850px" 
-                style="border:none;"></iframe>
-        """
-        st.markdown(pdf_display, unsafe_allow_html=True)
-
-        # Botón de descarga del PDF
-        with open(pdf_path, "rb") as f:
-            st.download_button(
-                label="⬇️ Descargar Informe EDA (PDF)",
-                data=f,
-                file_name="Informe_EDA.pdf",
-                mime="application/pdf"
-            )
-    else:
-        st.warning("⚠️ No se encontró el archivo 'informe_eda.pdf' en la carpeta 'doc/'. Verificá su ubicación.")
-
-    # Enlace al repositorio de GitHub (versión pública del informe)
     st.markdown("---")
-    st.markdown("""
-    📘 [Abrir Informe EDA completo en GitHub](https://github.com/marco11235813/Retencion-de-clientes---NoCountry/blob/main/doc/informe_eda.pdf)
-    """)
-
+    st.markdown("📘 [Abrir informe completo en GitHub](https://github.com/marco11235813/Retencion-de-clientes---NoCountry/blob/main/doc/informe_eda.pdf)")
 
 # ------------------------------------------------------------
 # DASHBOARD (LOOKER STUDIO)
