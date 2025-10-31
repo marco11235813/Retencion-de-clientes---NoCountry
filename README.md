@@ -36,7 +36,7 @@ Sera necesario también contar con:
 
 * [Informe EDA]()
 * [Dasboard](https://lookerstudio.google.com/reporting/3a55f164-2eb4-4b21-983b-08cdffef6786)
-* [Notebook Modelo]()
+* [Notebook Modelo](https://colab.research.google.com/drive/13-Io57WIchbb5u52-1BkIKR83vawcgw0#scrollTo=A2g7IKopeex6)
 * [App Web]()
 
 # Tecnologias utilizadas
