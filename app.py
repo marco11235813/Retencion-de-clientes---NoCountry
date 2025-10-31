@@ -221,31 +221,9 @@ elif selection == "Dashboard":
 # ------------------------------------------------------------
 # FOOTER
 # ------------------------------------------------------------
+st.sidebar.markdown("---")
+st.sidebar.markdown("Desarrollado por **Datalogic Data Team** 💡")
 
-# --- Logo en el footer del sidebar ---
-logo_path = "assets/consultora_logo.jpeg"  # ruta local
-
-def sidebar_footer_logo():
-    if os.path.exists(logo_path):
-        with open(logo_path, "rb") as f:
-            data = f.read()
-        encoded = base64.b64encode(data).decode()
-        logo_html = f"""
-            <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-                        text-align: center;">
-                <img src="data:image/jpeg;base64,{encoded}" width="120">
-                <p style="font-size: 12px; color: gray; margin-top: 5px;">© 2025 Innovapay</p>
-            </div>
-        """
-        st.markdown(logo_html, unsafe_allow_html=True)
-    else:
-        st.warning("⚠️ No se encontró el logo en 'doc/logo_empresa.jpeg'")
-
-# Llamar al final del sidebar
-with st.sidebar:
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("Desarrollado por **Datalogic Data Team** 💡")
-    sidebar_footer_logo()
 
 
 

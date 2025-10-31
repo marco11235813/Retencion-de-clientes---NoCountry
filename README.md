@@ -51,6 +51,9 @@ pip install -r requirements.txt
 streamlit run app.py
 
 
+LINK A LA APP EN STREAMLIT CLOUD: [LINK AQUI](https://retencion-de-clientes---nocountry-nnsjcnbngfpvxntsvqcmua.streamlit.app/)
+
+
 # Tecnologias
 Se utilizaron las siguientes herramientas para realizar el proyecto para el cliente.
 
