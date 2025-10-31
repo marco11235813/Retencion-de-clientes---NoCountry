@@ -148,7 +148,7 @@ selection = st.sidebar.radio("Navegar", ["Informe EDA", "Dashboard"])
 
 st.header("📊 Informe EDA")
 
-pdf_path = "doc/Informe_EDA.pdf"
+pdf_path = "doc/informe_eda.pdf"
 
 if os.path.exists(pdf_path):
     with open(pdf_path, "rb") as f:
@@ -161,7 +161,7 @@ else:
 # ------------------------------------------------------------
 # DASHBOARD (LOOKER STUDIO)
 # ------------------------------------------------------------
-elif selection == "Dashboard":
+if selection == "Dashboard":
     st.header("📊 Dashboard Interactivo — Looker Studio")
     st.markdown("""
     Este dashboard permite visualizar métricas clave sobre el comportamiento de los clientes,
