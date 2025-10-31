@@ -32,7 +32,7 @@ Nuestro objetivo para la empresa es transformar esta gestión de riesgo, trabaja
 * [Notebook Modelo](https://colab.research.google.com/drive/13-Io57WIchbb5u52-1BkIKR83vawcgw0#scrollTo=A2g7IKopeex6)
 * [App Web]()
 
-# Tecnologias utilizadas
+# Tecnologias
 Se utilizaron las siguientes herramientas para realizar el proyecto para el cliente.
 
   - *Google BigQuery* - Almacenamiento y consulta de datos
