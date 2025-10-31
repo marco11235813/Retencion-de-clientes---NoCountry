@@ -117,7 +117,7 @@ if selection == "Informe EDA":
     """)
 
     # ID del archivo PDF en Google Drive
-    DRIVE_FILE_ID = "1xI5TieWDkdS4j5yT5umMrjFtUE_jCm4a"
+    DRIVE_FILE_ID = "1-BQyYY_KpMcrHg6mjoGALcHgxCmErEM9"
     pdf_url = f"https://drive.google.com/file/d/{DRIVE_FILE_ID}/preview"
 
     # Mostrar el PDF usando el visor integrado de Google Drive
